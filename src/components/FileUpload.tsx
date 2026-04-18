@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import { Upload, FileText, X, Loader2 } from 'lucide-react';
+import { extractEpub } from '../lib/epub';
 
 interface FileUploadProps {
   onFileProcessed: (content: string, title: string, fileName: string, fileType: string) => void;
@@ -57,7 +58,11 @@ export default function FileUpload({ onFileProcessed }: FileUploadProps) {
           throw new Error('PDF enthält keinen extrahierbaren Text. Eventuell ein Scan?');
         }
       } else if (ext === 'epub') {
-        content = 'EPUB-Extraktion: Bitte TXT oder PDF verwenden. EPUB-Support kommt bald.';
+        const epubMeta = await extractEpub(file);
+        content = epubMeta.content;
+        if (epubMeta.title && epubMeta.title !== 'Unbekannter Titel') {
+          title = epubMeta.title;
+        }
       }
 
       if (content.trim().length === 0) {
