@@ -42,13 +42,18 @@ Eine Open-Source-Text-zu-Sprache-App, die Dateien lokal vorliest und Artikel aus
 
 ```bash
 npm install
-npm run dev        # Dev server
-npm run build      # Production build
-npm run android    # Build & open Android Studio
+npm run dev           # Dev server
+npm run build         # Production build
+npm run android:build # Build + sync + Android Studio öffnen
 npm run android:sync  # Sync only
+npm run android:open  # Android Studio öffnen
 ```
 
 ## Screenshots & APK
 
 - **Web:** https://hendr15k.github.io/open-reader/
-- **APK:** Siehe [Releases](https://github.com/hendr15k/open-reader/releases)
+- **APK / Nightly:** Siehe [Releases](https://github.com/hendr15k/open-reader/releases)
+
+## Build Status
+
+Das Projekt baut erfolgreich lokal via `npm run build`.
